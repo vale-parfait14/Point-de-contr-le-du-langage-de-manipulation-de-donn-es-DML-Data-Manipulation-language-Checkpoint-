@@ -1,0 +1,41 @@
+-- Création du tableau PRODUIT 
+CREATE TABLE Product (
+    Product_id VARCHAR(50) PRIMARY KEY,
+    Product_name VARCHAR(100),
+    Category VARCHAR(100),
+    Price INTEGER
+);
+
+INSERT INTO Product(Product_id, Product_name, Category, Price) 
+VALUES ('P01', 'Samsung Galaxy S20', 'Smartphone', 3299);
+INSERT INTO Product(Product_id, Product_name, Category, Price) 
+VALUES ('P02', 'ASUS Notebook', 'Pc', 4599);
+
+-- Création du tableau CLIENT
+CREATE TABLE Customer (
+    Customer_id VARCHAR(50) PRIMARY KEY,
+    Customer_name VARCHAR(50),
+    Customer_Tel VARCHAR(15)
+);
+
+INSERT INTO Customer(Customer_id, Customer_name, Customer_Tel) 
+VALUES ('C01', 'ALI', '71321009');
+INSERT INTO Customer(Customer_id, Customer_name, Customer_Tel) 
+VALUES ('C02', 'ASMA', '77345823');
+
+-- Création du tableau COMMANDE
+CREATE TABLE Orders (
+    Order_id VARCHAR(50) PRIMARY KEY,
+    Customer_id VARCHAR(50),
+    Product_id VARCHAR(50),
+    OrderDate DATE,
+    Quantity INTEGER,
+    Total_amount INTEGER,
+    FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id),
+    FOREIGN KEY (Product_id) REFERENCES Product(Product_id)
+);
+
+INSERT INTO Orders(Order_id, Customer_id, Product_id, OrderDate, Quantity, Total_amount) 
+VALUES ('O01', 'C01', 'P01', '2020-05-28', 2, 9198);
+INSERT INTO Orders(Order_id, Customer_id, Product_id, OrderDate, Quantity, Total_amount) 
+VALUES ('O02', 'C02', 'P02', '2020-05-28', 1, 3299);
